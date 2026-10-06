@@ -8,24 +8,25 @@ jobs:
   build-and-artifact:
     runs-on: ubuntu-latest
 
-  steps:
-  
-   - name: Checkout
-     uses: actions/checkout@v5.1.0
+    # Fix: Indented 'steps' and all its children by two spaces
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-   - name: setup java
-     uses: actions/setup-java@v6.0.1
-     with:
-       java-version: '25'
-       distribution: 'oracle'
-       cache: 'maven'
+      - name: setup java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'oracle'
+          cache: 'maven'
 
-   - name: build with maven
-     run: ./mvnw clean package
+      - name: build with maven
+        run: ./mvnw clean package
 
-   - name: Upload Build Artifact
-     uses: actions/upload-artifact@v4
-     with:
-       name: spring-boot-app-jar
-       path: target/*.jar
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-boot-app-jar
+          path: target/*.jar
+
     
